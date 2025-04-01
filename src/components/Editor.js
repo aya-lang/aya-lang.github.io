@@ -225,7 +225,7 @@ export default function Editor({children}) {
             {regex: /\.{/, token: "comment", next: "comment"},
 
             // Special names / keywords
-            {regex: /(?:def|class|struct|if|while|else|do|self|from|import)\b/,
+            {regex: /(?:def|class|struct|if|while|else|do|self|import|require)\b/,
                 token: "keyword"},
 
             // Standard variables

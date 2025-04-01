@@ -1,15 +1,8 @@
 import Editor from '@site/src/components/Editor'
 
-:::warning
-
-The web version of aya is in early development and has known bugs and limited features.
-See the [desktop implementation](https://github.com/aya-lang/aya) for a feature-complete release.
-
-:::
-
 <Editor>
     ```
-    import ::asciiart
+    require asciiart {_}
 
     {
       " 6_`|6 |` ()--()"_\L"  ~"_T.join
