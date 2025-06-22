@@ -1,41 +1,22 @@
-# Website
+# Aya Website
 
-This website is built using [Docusaurus](https://docusaurus.io/), a modern static website generator.
+## Updating the VM
 
-### Installation
-
-```
-$ yarn
-```
-
-### Local Development
+Build the VM from the aya repo
 
 ```
-$ yarn start
+mvn package -P web
 ```
 
-This command starts a local development server and opens up a browser window. Most changes are reflected live without having to restart the server.
-
-### Build
+Copy the JS files here
 
 ```
-$ yarn build
+cp ~/git/aya/target/javascript/aya.js static/js/
+cp ~/git/aya/target/package-stdlib-js/aya-stdlib.js static/js
 ```
 
-This command generates static content into the `build` directory and can be served using any static contents hosting service.
-
-### Deployment
-
-Using SSH:
+## Deploy
 
 ```
-$ USE_SSH=true yarn deploy
+bash deploy.sh
 ```
-
-Not using SSH:
-
-```
-$ GIT_USER=<Your GitHub username> yarn deploy
-```
-
-If you are using GitHub pages for hosting, this command is a convenient way to build the website and push to the `gh-pages` branch.
