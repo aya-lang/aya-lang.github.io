@@ -1,0 +1,59 @@
+name: Deploy Aya Website
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout website repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'maven'
+
+      - name: Clone aya repository
+        run: |
+          git clone https://github.com/aya-lang/aya.git /tmp/aya
+
+      - name: Build aya web version
+        working-directory: /tmp/aya
+        run: |
+          mvn package -P web
+
+      - name: Copy JS files to website
+        run: |
+          cp /tmp/aya/target/javascript/aya.js static/js/
+          cp /tmp/aya/target/package-stdlib-js/aya-stdlib.js static/js/
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Configure git
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Deploy to GitHub Pages
+        env:
+          DEPLOYMENT_BRANCH: gh-pages
+          USE_SSH: false
+          GIT_USER: git
+        run: npm run deploy
