@@ -17,7 +17,7 @@ Print ASCII art of a train using the `asciiart` standard library module.
     require asciiart {_}
 
     {
-      " 6_`|6 |` ()--()"_\L"  ~"_T.join
+      " 6_`|6 |` ()--()"_\L"  ~"_K.join
     } :train;
 
     3 train

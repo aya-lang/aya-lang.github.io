@@ -5,7 +5,7 @@ import Editor from '@site/src/components/Editor'
     require asciiart {_}
 
     {
-      " 6_`|6 |` ()--()"_\L"  ~"_T.join
+      " 6_`|6 |` ()--()"_\L"  ~"_K.join
     } :train;
 
     3 train
